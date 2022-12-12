@@ -1,0 +1,25 @@
+services:
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/:/etc/nginx/conf.d/
+    
+  site1:
+    image: httpd:2.4
+    container_name: site1
+    expose:
+      - "80"
+    volumes:
+      - ./site1/:/usr/local/apache2/htdocs/
+
+  site2:
+    image: httpd:2.4
+    container_name: site2
+    expose:
+      - "80"
+    volumes:
+      - ./site2/:/usr/local/apache2/htdocs/
+
